@@ -17,6 +17,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var pins: [MapModel] = []
     var tapPins: [MapModel] = []
     let locationManager = CLLocationManager()
+    var previousLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         getPins()
         mapView.delegate = self
         mapView?.showsUserLocation = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        mapView?.addGestureRecognizer(tapGesture)
+        
         checkLocationServices()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -90,11 +90,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
-            print("ran@")
-            mapView.showsUserLocation = true
-            locationManager.startUpdatingLocation()
-            centerViewOnUserLocation()
-            break
+            startTrackingUserLocation()
         case .denied:
             //show alert to request permission to turn it on
             break
@@ -108,19 +104,58 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
+    func startTrackingUserLocation() {
+        print("ran@")
+        mapView.showsUserLocation = true
+        centerViewOnUserLocation()
+        locationManager.startUpdatingLocation()
+        previousLocation = getCenterLocation(for: mapView)
     }
+    
+    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        guard let location = locations.last else { return }
+//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+//        mapView.setRegion(region, animated: true)
+//    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let center = getCenterLocation(for: mapView)
+        let geoCoder = CLGeocoder()
         
+        guard let previousLocation = self.previousLocation else { return }
+        
+        guard center.distance(from: previousLocation) > 50 else { return }
+        self.previousLocation = center
+        
+        geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
+            guard let self = self else { return }
+            
+            if let _ = error {
+                return
+            }
+            
+            guard let placemark = placemarks?.first else {
+                return
+            }
+            
+            let streetName = placemark.thoroughfare
+            
+            DispatchQueue.main.async {
+                self.addressLabel.text = streetName
+            }
+        }
     }
 }
 
