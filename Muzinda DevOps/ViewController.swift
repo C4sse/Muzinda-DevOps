@@ -14,23 +14,68 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabel: UILabel!
     
+    @IBOutlet weak var startDateTextField: UITextField!
+    @IBOutlet weak var endDateTextField: UITextField!
+    @IBOutlet weak var durationLabel: UILabel!
+    
+    
+    
     var pins: [MapModel] = []
-    var tapPins: [MapModel] = []
     let locationManager = CLLocationManager()
     var previousLocation: CLLocation?
+     let endDatePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
         getPins()
-        mapView.delegate = self
+        locationManager.delegate = self
+        mapView?.delegate = self
         mapView?.showsUserLocation = true
+        checkLocationServices()
         
-        checkLocationServices()
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
+        datePicker.addTarget(self, action: #selector(datePickerValueChange(sender:)), for: UIControl.Event.valueChanged)
+        datePicker.minimumDate = Date() + 3600
+        startDateTextField.inputView = datePicker
+        
+       
+        endDatePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
+        endDatePicker.addTarget(self, action: #selector(endDatePickerValueChange(sender:)), for: UIControl.Event.valueChanged)
+        endDateTextField.inputView = endDatePicker
     }
-    override func viewDidAppear(_ animated: Bool) {
-        checkLocationServices()
+    
+    @objc func datePickerValueChange(sender: UIDatePicker) {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.short
+        formatter.timeStyle = DateFormatter.Style.short
+        
+        print(sender.date + 120)
+        startDateTextField.text = formatter.string(from: sender.date)
+        endDateTextField.text = nil
+        endDatePicker.minimumDate = formatter.date(from: startDateTextField.text!)! + 3600
+        durationLabel.text = nil
+    }
+    
+    @objc func endDatePickerValueChange(sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.short
+        formatter.timeStyle = DateFormatter.Style.short
+        endDateTextField.text = formatter.string(from: sender.date)
+        let duration = sender.date.timeIntervalSince(formatter.date(from: startDateTextField.text!)!)
+        
+        let dateComponents = DateComponentsFormatter()
+        dateComponents.allowedUnits = [.hour, .minute]
+        dateComponents.unitsStyle = .full
+        
+        durationLabel.text! = ("Duration: \(dateComponents.string(from: TimeInterval(duration))!)")
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -40,6 +85,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func refreshTapped(_ sender: Any) {
         showMarkers()
+        centerViewOnUserLocation()
     }
     func getPins() {
         
@@ -150,10 +196,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 return
             }
             
-            let streetName = placemark.thoroughfare
+            let streetName = placemark.thoroughfare ?? ""
+            let streetNumber = placemark.subThoroughfare ?? ""
             
             DispatchQueue.main.async {
-                self.addressLabel.text = streetName
+                self.addressLabel.text = ("\(streetName) \(streetNumber)")
             }
         }
     }
