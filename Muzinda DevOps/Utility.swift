@@ -20,7 +20,7 @@ extension UIView {
         case none
     }
     
-    func slideIn(from edge: Animation = .none, x: CGFloat = 0, y: CGFloat = 0, duration: TimeInterval = 3, delay: TimeInterval = 0, completion: ((Bool) -> Void)? = nil) -> UIView {
+    func slideIn(from edge: Animation = .none, x: CGFloat = 0, y: CGFloat = 0, duration: TimeInterval = 0.7, delay: TimeInterval = 0, completion: ((Bool) -> Void)? = nil) -> UIView {
         
         let offset = offsetFor(edge: edge)
         transform = CGAffineTransform(translationX: offset.x + x, y: offset.y + y)
@@ -35,7 +35,7 @@ extension UIView {
         return self
     }
     
-    func slideOut(from edge: Animation = .none, x: CGFloat = 0, y: CGFloat = 0, duration: TimeInterval = 3, delay: TimeInterval = 0, completion: ((Bool) -> Void)? = nil) -> UIView {
+    func slideOut(from edge: Animation = .none, x: CGFloat = 0, y: CGFloat = 0, duration: TimeInterval = 0.7, delay: TimeInterval = 0, completion: ((Bool) -> Void)? = nil) -> UIView {
         
         let offset = offsetFor(edge: edge)
         let endTransform = CGAffineTransform(translationX: offset.x + x, y: offset.y + y)

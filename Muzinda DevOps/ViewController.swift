@@ -9,8 +9,8 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITextViewDelegate {
+    
     @IBOutlet weak var myRequestsButton: UIBarButtonItem!
     @IBOutlet weak var addRequestButton: UIBarButtonItem!
     @IBOutlet weak var messagesButton: UIBarButtonItem!
@@ -27,14 +27,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var requestServiceButton: UIButton!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var centerPin: UIImageView!
+    @IBOutlet weak var jobDescription: UITextView!
     var latitude: Double?
     var longitude: Double?
-    
-    
+    let placeHolderText = "Job Descpription..."
     var pins: [MapModel] = []
     let locationManager = CLLocationManager()
     var previousLocation: CLLocation?
-     let endDatePicker = UIDatePicker()
+    let endDatePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +50,27 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         datePicker.addTarget(self, action: #selector(datePickerValueChange(sender:)), for: UIControl.Event.valueChanged)
         datePicker.minimumDate = Date() + 3600
         startDateTextField.inputView = datePicker
-       
+        
         endDatePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
         endDatePicker.addTarget(self, action: #selector(endDatePickerValueChange(sender:)), for: UIControl.Event.valueChanged)
         endDateTextField.inputView = endDatePicker
         promptView.isHidden = true
         bottomView.isHidden = true
         centerPin.isHidden = true
+        jobDescription.delegate = self
+        jobDescription.text = placeHolderText
+        self.jobDescription.textColor = .lightGray
+        promptView.layer.cornerRadius = 5
+//        promptView.layer.masksToBounds = true
+        
+        self.promptView.layer.shadowPath =
+            UIBezierPath(roundedRect: self.promptView.bounds,
+                         cornerRadius: self.promptView.layer.cornerRadius).cgPath
+        self.promptView.layer.shadowColor = UIColor.black.cgColor
+        self.promptView.layer.shadowOpacity = 0.25
+        self.promptView.layer.shadowOffset = CGSize(width: 4, height: 7)
+        self.promptView.layer.shadowRadius = 5
+        self.promptView.layer.masksToBounds = false
     }
     
     @objc func datePickerValueChange(sender: UIDatePicker) {
@@ -91,30 +105,40 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        print("workin me \(view.annotation?.coordinate) \(mapView.userLocation.coordinate)")
+        //        print("workin me \(view.annotation?.coordinate) \(mapView.userLocation.coordinate)")
         
     }
     
     @IBAction func requestServicesTapped(_ sender: Any) {
         
-        guard let latitude = latitude else { return }
+        guard let latitude = latitude, let longitude = longitude else { return }
         
         let newRequestId = API.Map.REF_MAPREQ.childByAutoId().key
         let newRequestReference = API.Map.REF_MAPREQ.child(newRequestId!)
-        let dict = ["latitude": latitude, "longitude": longitude, "name": jobTitleTextField.text!] as [String : Any]
+        let dict = ["latitude": latitude, "longitude": longitude, "title": jobTitleTextField.text!, "price": priceTextField.text!, "locationSize": sizeTextField.text!, "description": jobDescription.text!, "startDate": startDateTextField.text!, "endDate": endDateTextField.text!, "address": addressLabel.text!, "duration": durationLabel.text!] as [String : Any]
         print(dict)
         newRequestReference.setValue(dict, withCompletionBlock: { (error, ref) in
+            
             if error != nil {
                 print(error!.localizedDescription)
                 return
             }
+            self.jobTitleTextField = nil
+            self.priceTextField = nil
+            self.sizeTextField = nil
+            self.addressLabel = nil
+            self.jobDescription.text = self.placeHolderText
+            self.jobDescription.textColor = .lightGray
+            self.startDateTextField = nil
+            self.endDateTextField = nil
+            self.refreshButton.isEnabled = true
+            self.addRequestButton.isEnabled = true
+            self.messagesButton.isEnabled = true
+            self.myRequestsButton.isEnabled = true
+            self.centerPin.isHidden = true
+            self.promptView.slideOut(from: .left)
+            self.bottomView.slideOut(from: .left)
         })
-        
-        self.refreshButton.isEnabled = true
-        self.addRequestButton.isEnabled = true
-        self.messagesButton.isEnabled = true
-        self.myRequestsButton.isEnabled = true
-        self.centerPin.isHidden = true
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -151,7 +175,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func getPins() {
         
         API.Map.observeUsers{ (pin) in
-//            print("##### \(pin.latitude) \(pin.longitude) \(pin.name)")
+            //            print("##### \(pin.latitude) \(pin.longitude) \(pin.name)")
             self.pins.append(pin)
         }
     }
@@ -163,7 +187,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         for i in 0...pins.count - 1 {
             let coordinateValue = CLLocationCoordinate2D(latitude: Double(pins[i].latitude!), longitude: Double(pins[i].longitude!))
             
-            let pin = customPin.init(pinTitle: pins[i].name!, pinSubtitle: "", location: coordinateValue)
+            let pin = customPin.init(pinTitle: pins[i].title, pinSubtitle: "", location: coordinateValue)
             self.mapView.addAnnotation(pin)
             self.mapView.delegate = self
             self.mapView.reloadInputViews()
@@ -224,12 +248,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let location = locations.last else { return }
-//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-//        mapView.setRegion(region, animated: true)
-//    }
+    //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    //        guard let location = locations.last else { return }
+    //        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    //        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+    //        mapView.setRegion(region, animated: true)
+    //    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
@@ -239,6 +263,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let center = getCenterLocation(for: mapView)
         let geoCoder = CLGeocoder()
+        
+        if centerPin.isHidden { return }
         
         guard let previousLocation = self.previousLocation else { return }
         
@@ -265,6 +291,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             DispatchQueue.main.async {
                 self.addressLabel.text = ("\(streetName) \(streetNumber)")
             }
+        }
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        
+        self.jobDescription.textColor = .black
+        
+        if(self.jobDescription.text == placeHolderText) {
+            self.jobDescription.text = ""
+        }
+        
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if(textView.text == "") {
+            self.jobDescription.text = placeHolderText
+            self.jobDescription.textColor = .lightGray
         }
     }
 }
