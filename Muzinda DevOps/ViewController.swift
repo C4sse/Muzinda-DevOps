@@ -11,13 +11,24 @@ import MapKit
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    @IBOutlet weak var myRequestsButton: UIBarButtonItem!
+    @IBOutlet weak var addRequestButton: UIBarButtonItem!
+    @IBOutlet weak var messagesButton: UIBarButtonItem!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabel: UILabel!
-    
+    @IBOutlet weak var promptView: UIView!
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
     @IBOutlet weak var durationLabel: UILabel!
-    
+    @IBOutlet weak var jobTitleTextField: UITextField!
+    @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var sizeTextField: UITextField!
+    @IBOutlet weak var requestServiceButton: UIButton!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var centerPin: UIImageView!
+    var latitude: Double?
+    var longitude: Double?
     
     
     var pins: [MapModel] = []
@@ -39,11 +50,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         datePicker.addTarget(self, action: #selector(datePickerValueChange(sender:)), for: UIControl.Event.valueChanged)
         datePicker.minimumDate = Date() + 3600
         startDateTextField.inputView = datePicker
-        
        
         endDatePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
         endDatePicker.addTarget(self, action: #selector(endDatePickerValueChange(sender:)), for: UIControl.Event.valueChanged)
         endDateTextField.inputView = endDatePicker
+        promptView.isHidden = true
+        bottomView.isHidden = true
+        centerPin.isHidden = true
     }
     
     @objc func datePickerValueChange(sender: UIDatePicker) {
@@ -52,7 +65,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         formatter.dateStyle = DateFormatter.Style.short
         formatter.timeStyle = DateFormatter.Style.short
         
-        print(sender.date + 120)
         startDateTextField.text = formatter.string(from: sender.date)
         endDateTextField.text = nil
         endDatePicker.minimumDate = formatter.date(from: startDateTextField.text!)! + 3600
@@ -60,6 +72,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     @objc func endDatePickerValueChange(sender: UIDatePicker) {
+        
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.short
         formatter.timeStyle = DateFormatter.Style.short
@@ -71,7 +84,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         dateComponents.unitsStyle = .full
         
         durationLabel.text! = ("Duration: \(dateComponents.string(from: TimeInterval(duration))!)")
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -81,6 +93,55 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 //        print("workin me \(view.annotation?.coordinate) \(mapView.userLocation.coordinate)")
         
+    }
+    
+    @IBAction func requestServicesTapped(_ sender: Any) {
+        
+        guard let latitude = latitude else { return }
+        
+        let newRequestId = API.Map.REF_MAPREQ.childByAutoId().key
+        let newRequestReference = API.Map.REF_MAPREQ.child(newRequestId!)
+        let dict = ["latitude": latitude, "longitude": longitude, "name": jobTitleTextField.text!] as [String : Any]
+        print(dict)
+        newRequestReference.setValue(dict, withCompletionBlock: { (error, ref) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+        })
+        
+        self.refreshButton.isEnabled = true
+        self.addRequestButton.isEnabled = true
+        self.messagesButton.isEnabled = true
+        self.myRequestsButton.isEnabled = true
+        self.centerPin.isHidden = true
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        
+        self.promptView.slideOut(from: .left)
+        self.bottomView.slideOut(from: .left)
+        self.refreshButton.isEnabled = true
+        self.addRequestButton.isEnabled = true
+        self.messagesButton.isEnabled = true
+        self.myRequestsButton.isEnabled = true
+        self.centerPin.isHidden = true
+    }
+    
+    @IBAction func presentPrompt(_ sender: Any) {
+        
+        self.promptView.slideIn(from: .left)
+        self.refreshButton.isEnabled = false
+        self.addRequestButton.isEnabled = false
+        self.messagesButton.isEnabled = false
+        self.myRequestsButton.isEnabled = false
+        self.centerPin.isHidden = true
+    }
+    
+    @IBAction func addRequest(_ sender: Any) {
+        
+        self.bottomView.slideIn(from: .left)
+        self.centerPin.isHidden = false
     }
     
     @IBAction func refreshTapped(_ sender: Any) {
@@ -96,10 +157,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func showMarkers() {
-        print(pins.count)
-        if pins.count == 0 {
-            return
-        }
+        
+        if pins.count == 0 { return }
+        
         for i in 0...pins.count - 1 {
             let coordinateValue = CLLocationCoordinate2D(latitude: Double(pins[i].latitude!), longitude: Double(pins[i].longitude!))
             
@@ -109,7 +169,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             self.mapView.reloadInputViews()
         }
     }
-    
     
     let regionInMeters: Double = 100
     
@@ -177,6 +236,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
         let center = getCenterLocation(for: mapView)
         let geoCoder = CLGeocoder()
         
@@ -198,6 +258,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             let streetName = placemark.thoroughfare ?? ""
             let streetNumber = placemark.subThoroughfare ?? ""
+            
+            self.latitude = center.coordinate.latitude
+            self.longitude = center.coordinate.longitude
             
             DispatchQueue.main.async {
                 self.addressLabel.text = ("\(streetName) \(streetNumber)")

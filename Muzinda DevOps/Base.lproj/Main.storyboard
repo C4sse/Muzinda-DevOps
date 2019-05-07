@@ -28,9 +28,8 @@
                                     <constraint firstAttribute="width" constant="40" id="KGl-j2-FT2"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWy-N3-xc7">
-                                <rect key="frame" x="16" y="132" width="343" height="353"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWy-N3-xc7">
+                                <rect key="frame" x="16" y="134" width="343" height="353"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Job Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iTf-TE-3Gg">
                                         <rect key="frame" x="8" y="8" width="327" height="30"/>
@@ -95,42 +94,103 @@
                                         <rect key="frame" x="107" y="262" width="128" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Request Service"/>
+                                        <connections>
+                                            <action selector="requestServicesTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aCn-aU-NCF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="353" id="qu0-no-EJE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1g-Hi-G9O">
+                                <rect key="frame" x="0.0" y="622" width="375" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbB-xn-d22">
+                                        <rect key="frame" x="318" y="3" width="41" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Next"/>
+                                        <connections>
+                                            <action selector="presentPrompt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V9u-Ur-QRd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqP-T4-BkF">
+                                        <rect key="frame" x="8" y="3" width="71" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="1" green="0.072387332530000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KO6-2J-IDQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jbB-xn-d22" secondAttribute="bottom" constant="3" id="RiW-Sa-lXw"/>
+                                    <constraint firstAttribute="trailing" secondItem="jbB-xn-d22" secondAttribute="trailing" constant="16" id="Vvg-TS-huh"/>
+                                    <constraint firstAttribute="height" constant="45" id="f64-Hr-hQN"/>
+                                    <constraint firstItem="jbB-xn-d22" firstAttribute="top" secondItem="f1g-Hi-G9O" secondAttribute="top" constant="3" id="lRt-Vx-X6C"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cWy-N3-xc7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="8rA-nm-rSA"/>
+                            <constraint firstItem="cWy-N3-xc7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="BeV-Z5-vtW"/>
                             <constraint firstItem="m3U-UJ-OQ5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RHb-o5-5Tg"/>
+                            <constraint firstItem="f1g-Hi-G9O" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="SmE-pG-RoS"/>
+                            <constraint firstItem="f1g-Hi-G9O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Stg-Yo-eIR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c39-NC-YKx" secondAttribute="trailing" id="bQU-17-FjY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="c39-NC-YKx" secondAttribute="bottom" id="bex-aX-icp"/>
                             <constraint firstItem="c39-NC-YKx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eZf-KK-VZT"/>
                             <constraint firstItem="m3U-UJ-OQ5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="13" id="ecs-ag-BOT"/>
                             <constraint firstItem="c39-NC-YKx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="p8F-m2-gzM"/>
+                            <constraint firstItem="f1g-Hi-G9O" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="riA-hN-tLp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cWy-N3-xc7" secondAttribute="trailing" constant="16" id="sv4-3O-bdt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="qJ7-Df-Rfy">
                         <leftBarButtonItems>
-                            <barButtonItem systemItem="reply" id="Gwg-1z-HVm"/>
+                            <barButtonItem systemItem="compose" id="Gwg-1z-HVm"/>
                             <barButtonItem systemItem="refresh" id="V2M-V7-AQC">
                                 <connections>
                                     <action selector="refreshTapped:" destination="BYZ-38-t0r" id="5kM-zF-kcC"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="My Requests" id="bjk-g8-hZb">
-                            <connections>
-                                <segue destination="EnC-jl-20s" kind="show" id="pCY-DK-r3V"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="My Requests" id="bjk-g8-hZb">
+                                <connections>
+                                    <segue destination="EnC-jl-20s" kind="show" id="pCY-DK-r3V"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="MMz-C4-h55">
+                                <connections>
+                                    <action selector="addRequest:" destination="BYZ-38-t0r" id="wOj-3d-Bue"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addRequestButton" destination="MMz-C4-h55" id="49l-qV-k2m"/>
                         <outlet property="addressLabel" destination="vrP-IH-tvF" id="Lz8-CE-Ao4"/>
+                        <outlet property="bottomView" destination="f1g-Hi-G9O" id="8UE-Yh-wz4"/>
+                        <outlet property="centerPin" destination="m3U-UJ-OQ5" id="6eP-tT-VJm"/>
                         <outlet property="durationLabel" destination="G3U-Bx-0je" id="JbL-4h-gUe"/>
                         <outlet property="endDateTextField" destination="Jl8-7i-pND" id="lQw-1u-Fqj"/>
+                        <outlet property="jobTitleTextField" destination="iTf-TE-3Gg" id="BDx-gk-tC1"/>
                         <outlet property="mapView" destination="c39-NC-YKx" id="tsd-k9-GgY"/>
+                        <outlet property="messagesButton" destination="Gwg-1z-HVm" id="8f5-2o-rv4"/>
+                        <outlet property="myRequestsButton" destination="bjk-g8-hZb" id="c41-5O-aCe"/>
+                        <outlet property="priceTextField" destination="lFn-n7-J3j" id="BbY-qF-i5d"/>
+                        <outlet property="promptView" destination="cWy-N3-xc7" id="iaE-g5-iXl"/>
+                        <outlet property="refreshButton" destination="V2M-V7-AQC" id="65I-Co-YYU"/>
+                        <outlet property="requestServiceButton" destination="fn0-LQ-xfs" id="Wbp-Az-jTw"/>
+                        <outlet property="sizeTextField" destination="jAB-6g-etu" id="Us9-PA-5h0"/>
                         <outlet property="startDateTextField" destination="bHZ-Tc-Dhq" id="SIe-wN-Ted"/>
                     </connections>
                 </viewController>

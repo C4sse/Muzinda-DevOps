@@ -22,15 +22,6 @@ class RequestViewController: ViewController {
     
     @IBAction func submitButtonTapped(_ sender: Any) {
         
-        let newRequestId = API.Map.REF_MAPREQ.childByAutoId().key
-        let newRequestReference = API.Map.REF_MAPREQ.child(newRequestId!)
-        let dict = ["latitude": Double(latitudeTextField.text!)!, "longitude": Double(longitudeTextField.text!)!, "name": nameTextField.text!] as [String : Any]
-        print(dict)
-        newRequestReference.setValue(dict, withCompletionBlock: { (error, ref) in
-            if error != nil {
-               print(error!.localizedDescription)
-                return
-            }
-        })
+        
     }
 }

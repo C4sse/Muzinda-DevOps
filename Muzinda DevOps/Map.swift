@@ -11,7 +11,7 @@ class MapModel {
     
     var latitude: Double?
     var longitude: Double?
-    var name: String?
+    var title: String?
 }
 
 extension MapModel {
@@ -21,7 +21,7 @@ extension MapModel {
     let map = MapModel()
         map.latitude = dict["latitude"] as? Double
         map.longitude = dict["longitude"] as? Double
-        map.name = dict["name"] as? String
+        map.title = dict["title"] as? String
     return map
     }
 }

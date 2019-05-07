@@ -17,6 +17,7 @@
 		03198784227E285A00B174EC /* MapApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03198783227E285A00B174EC /* MapApi.swift */; };
 		03198786227EF99B00B174EC /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03198785227EF99B00B174EC /* RequestViewController.swift */; };
 		03198788227EFC6100B174EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03198787227EFC6100B174EC /* GoogleService-Info.plist */; };
+		0394796B2281EFAC005F39D0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0394796A2281EFAC005F39D0 /* Utility.swift */; };
 		039FC30D227F4D7700472585 /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FC30C227F4D7700472585 /* CustomPin.swift */; };
 		AD3729399B0621C21EC9010B /* Pods_Muzinda_DevOps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D0D7FF2F2560E6522076FC6 /* Pods_Muzinda_DevOps.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		03198783227E285A00B174EC /* MapApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapApi.swift; sourceTree = "<group>"; };
 		03198785227EF99B00B174EC /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		03198787227EFC6100B174EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0394796A2281EFAC005F39D0 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		039FC30C227F4D7700472585 /* CustomPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
 		6D0D7FF2F2560E6522076FC6 /* Pods_Muzinda_DevOps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Muzinda_DevOps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA97C2AE6BD30EDE13489E84 /* Pods-Muzinda DevOps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Muzinda DevOps.release.xcconfig"; path = "Target Support Files/Pods-Muzinda DevOps/Pods-Muzinda DevOps.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				03198773227ADBAF00B174EC /* LaunchScreen.storyboard */,
 				03198787227EFC6100B174EC /* GoogleService-Info.plist */,
 				03198776227ADBAF00B174EC /* Info.plist */,
+				0394796A2281EFAC005F39D0 /* Utility.swift */,
 			);
 			path = "Muzinda DevOps";
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				039FC30D227F4D7700472585 /* CustomPin.swift in Sources */,
 				0319877E227E276000B174EC /* API.swift in Sources */,
 				03198786227EF99B00B174EC /* RequestViewController.swift in Sources */,
+				0394796B2281EFAC005F39D0 /* Utility.swift in Sources */,
 				03198782227E282100B174EC /* Map.swift in Sources */,
 				0319876B227ADB9E00B174EC /* AppDelegate.swift in Sources */,
 				03198784227E285A00B174EC /* MapApi.swift in Sources */,
