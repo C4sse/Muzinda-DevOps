@@ -73,31 +73,35 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.promptView.layer.masksToBounds = false
     }
     
+    var startDate: Date?
+    
     @objc func datePickerValueChange(sender: UIDatePicker) {
         
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.short
         formatter.timeStyle = DateFormatter.Style.short
         
+        startDate = sender.date
         startDateTextField.text = formatter.string(from: sender.date)
-        endDateTextField.text = nil
+        endDateTextField.text = ""
         endDatePicker.minimumDate = formatter.date(from: startDateTextField.text!)! + 3600
-        durationLabel.text = nil
+        durationLabel.text = ""
     }
     
     @objc func endDatePickerValueChange(sender: UIDatePicker) {
         
         let formatter = DateFormatter()
-        formatter.dateStyle = DateFormatter.Style.short
+        formatter.dateStyle = DateFormatter.Style.none
         formatter.timeStyle = DateFormatter.Style.short
         endDateTextField.text = formatter.string(from: sender.date)
-        let duration = sender.date.timeIntervalSince(formatter.date(from: startDateTextField.text!)!)
+        let duration = sender.date.timeIntervalSince(startDate!)
         
         let dateComponents = DateComponentsFormatter()
         dateComponents.allowedUnits = [.hour, .minute]
         dateComponents.unitsStyle = .full
-        
-        durationLabel.text! = ("Duration: \(dateComponents.string(from: TimeInterval(duration))!)")
+        let forLabel = ("Duration: \(dateComponents.string(from: TimeInterval(duration))!)")
+        print(forLabel)
+        durationLabel.text! = forLabel
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -107,11 +111,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         //        print("workin me \(view.annotation?.coordinate) \(mapView.userLocation.coordinate)")
         
+        
     }
     
     @IBAction func requestServicesTapped(_ sender: Any) {
         
         guard let latitude = latitude, let longitude = longitude else { return }
+        
+        print("l")
         
         let newRequestId = API.Map.REF_MAPREQ.childByAutoId().key
         let newRequestReference = API.Map.REF_MAPREQ.child(newRequestId!)
@@ -123,14 +130,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 print(error!.localizedDescription)
                 return
             }
-            self.jobTitleTextField = nil
-            self.priceTextField = nil
-            self.sizeTextField = nil
-            self.addressLabel = nil
+            
+            self.jobTitleTextField.text = ""
+            self.priceTextField.text = ""
+            self.sizeTextField.text = ""
+            self.addressLabel.text = ""
             self.jobDescription.text = self.placeHolderText
             self.jobDescription.textColor = .lightGray
-            self.startDateTextField = nil
-            self.endDateTextField = nil
+            self.startDateTextField.text = ""
+            self.endDateTextField.text = ""
             self.refreshButton.isEnabled = true
             self.addRequestButton.isEnabled = true
             self.messagesButton.isEnabled = true
@@ -187,19 +195,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         for i in 0...pins.count - 1 {
             let coordinateValue = CLLocationCoordinate2D(latitude: Double(pins[i].latitude!), longitude: Double(pins[i].longitude!))
             
-            let pin = customPin.init(pinTitle: pins[i].title, pinSubtitle: "", location: coordinateValue)
+            let pin = customPin.init(pinTitle: pins[i].title, pinSubtitle: pins[i].price, location: coordinateValue)
             self.mapView.addAnnotation(pin)
             self.mapView.delegate = self
             self.mapView.reloadInputViews()
         }
     }
     
-    let regionInMeters: Double = 100
+    let regionInMeters: Double = 3000
     
     func setUpLocationmanager() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
-    
+    func mapViewWillStartLocatingUser(_ mapView: MKMapView) {
+        centerViewOnUserLocation()
+    }
     func centerViewOnUserLocation() {
         let location = mapView.userLocation.coordinate
         let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
@@ -248,12 +258,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    //        guard let location = locations.last else { return }
-    //        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-    //        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-    //        mapView.setRegion(region, animated: true)
-    //    }
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            
+            if !centerPin.isHidden { return }
+            guard let location = locations.last else { return }
+            
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
@@ -266,9 +279,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         if centerPin.isHidden { return }
         
-        guard let previousLocation = self.previousLocation else { return }
         
-        guard center.distance(from: previousLocation) > 50 else { return }
+        guard self.previousLocation != nil else { return }
+        
+//        guard center.distance(from: previousLocation) > 50 else { return }
         self.previousLocation = center
         
         geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
