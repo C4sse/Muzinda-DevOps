@@ -19,6 +19,10 @@
 		03198788227EFC6100B174EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03198787227EFC6100B174EC /* GoogleService-Info.plist */; };
 		0321776F2284D42B007DB484 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0321776D2284D42A007DB484 /* ProgressHUD.bundle */; };
 		032177702284D42B007DB484 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0321776E2284D42B007DB484 /* ProgressHUD.m */; };
+		032177732284D6E2007DB484 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032177712284D6E2007DB484 /* LoginViewController.swift */; };
+		032177742284D6E2007DB484 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032177722284D6E2007DB484 /* SignUpViewController.swift */; };
+		032177762284DAC2007DB484 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032177752284DAC2007DB484 /* AuthService.swift */; };
+		032177782284DB09007DB484 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032177772284DB08007DB484 /* Config.swift */; };
 		0394796B2281EFAC005F39D0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0394796A2281EFAC005F39D0 /* Utility.swift */; };
 		039FC30D227F4D7700472585 /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FC30C227F4D7700472585 /* CustomPin.swift */; };
 		03A4361D2284CD0D00A18584 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4361B2284CD0C00A18584 /* MessagesController.swift */; };
@@ -49,6 +53,10 @@
 		0321776C2284D429007DB484 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		0321776D2284D42A007DB484 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		0321776E2284D42B007DB484 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		032177712284D6E2007DB484 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		032177722284D6E2007DB484 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		032177752284DAC2007DB484 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		032177772284DB08007DB484 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		0394796A2281EFAC005F39D0 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		039FC30C227F4D7700472585 /* CustomPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
 		03A4361B2284CD0C00A18584 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -119,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				0319877D227E276000B174EC /* API.swift */,
+				032177752284DAC2007DB484 /* AuthService.swift */,
+				032177772284DB08007DB484 /* Config.swift */,
 				03198783227E285A00B174EC /* MapApi.swift */,
 				03A4362A2284D03500A18584 /* UserApi.swift */,
 			);
@@ -154,6 +164,8 @@
 				03198785227EF99B00B174EC /* RequestViewController.swift */,
 				03A4361C2284CD0D00A18584 /* NewMessageController.swift */,
 				03A4361B2284CD0C00A18584 /* MessagesController.swift */,
+				032177712284D6E2007DB484 /* LoginViewController.swift */,
+				032177722284D6E2007DB484 /* SignUpViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -306,12 +318,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				032177732284D6E2007DB484 /* LoginViewController.swift in Sources */,
 				0319876D227ADB9E00B174EC /* ViewController.swift in Sources */,
 				03A436282284CEFB00A18584 /* UserCell.swift in Sources */,
 				039FC30D227F4D7700472585 /* CustomPin.swift in Sources */,
 				0319877E227E276000B174EC /* API.swift in Sources */,
 				03198786227EF99B00B174EC /* RequestViewController.swift in Sources */,
 				032177702284D42B007DB484 /* ProgressHUD.m in Sources */,
+				032177762284DAC2007DB484 /* AuthService.swift in Sources */,
+				032177742284D6E2007DB484 /* SignUpViewController.swift in Sources */,
 				03A436292284CEFB00A18584 /* ChatMessageCell.swift in Sources */,
 				03A4362B2284D03500A18584 /* UserApi.swift in Sources */,
 				0394796B2281EFAC005F39D0 /* Utility.swift in Sources */,
@@ -320,6 +335,7 @@
 				03A436202284CD2300A18584 /* Message.swift in Sources */,
 				03A4361E2284CD0D00A18584 /* NewMessageController.swift in Sources */,
 				03A436252284CE7500A18584 /* User.swift in Sources */,
+				032177782284DB09007DB484 /* Config.swift in Sources */,
 				0319876B227ADB9E00B174EC /* AppDelegate.swift in Sources */,
 				03198784227E285A00B174EC /* MapApi.swift in Sources */,
 				03A4361D2284CD0D00A18584 /* MessagesController.swift in Sources */,
