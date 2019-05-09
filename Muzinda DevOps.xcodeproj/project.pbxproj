@@ -17,8 +17,18 @@
 		03198784227E285A00B174EC /* MapApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03198783227E285A00B174EC /* MapApi.swift */; };
 		03198786227EF99B00B174EC /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03198785227EF99B00B174EC /* RequestViewController.swift */; };
 		03198788227EFC6100B174EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03198787227EFC6100B174EC /* GoogleService-Info.plist */; };
+		0321776F2284D42B007DB484 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0321776D2284D42A007DB484 /* ProgressHUD.bundle */; };
+		032177702284D42B007DB484 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0321776E2284D42B007DB484 /* ProgressHUD.m */; };
 		0394796B2281EFAC005F39D0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0394796A2281EFAC005F39D0 /* Utility.swift */; };
 		039FC30D227F4D7700472585 /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FC30C227F4D7700472585 /* CustomPin.swift */; };
+		03A4361D2284CD0D00A18584 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4361B2284CD0C00A18584 /* MessagesController.swift */; };
+		03A4361E2284CD0D00A18584 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4361C2284CD0D00A18584 /* NewMessageController.swift */; };
+		03A436202284CD2300A18584 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4361F2284CD2300A18584 /* Message.swift */; };
+		03A436252284CE7500A18584 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A436242284CE7500A18584 /* User.swift */; };
+		03A436282284CEFB00A18584 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A436262284CEFB00A18584 /* UserCell.swift */; };
+		03A436292284CEFB00A18584 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A436272284CEFB00A18584 /* ChatMessageCell.swift */; };
+		03A4362B2284D03500A18584 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4362A2284D03500A18584 /* UserApi.swift */; };
+		03A4362D2284D0FE00A18584 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4362C2284D0FE00A18584 /* ChatLogController.swift */; };
 		AD3729399B0621C21EC9010B /* Pods_Muzinda_DevOps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D0D7FF2F2560E6522076FC6 /* Pods_Muzinda_DevOps.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,8 +45,20 @@
 		03198783227E285A00B174EC /* MapApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapApi.swift; sourceTree = "<group>"; };
 		03198785227EF99B00B174EC /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		03198787227EFC6100B174EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0321776B2284D427007DB484 /* Muzinda DevOps-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Muzinda DevOps-Bridging-Header.h"; sourceTree = "<group>"; };
+		0321776C2284D429007DB484 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		0321776D2284D42A007DB484 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		0321776E2284D42B007DB484 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		0394796A2281EFAC005F39D0 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		039FC30C227F4D7700472585 /* CustomPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
+		03A4361B2284CD0C00A18584 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		03A4361C2284CD0D00A18584 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		03A4361F2284CD2300A18584 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		03A436242284CE7500A18584 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../Spark/Spark/Model/User.swift; sourceTree = "<group>"; };
+		03A436262284CEFB00A18584 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		03A436272284CEFB00A18584 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		03A4362A2284D03500A18584 /* UserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		03A4362C2284D0FE00A18584 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		6D0D7FF2F2560E6522076FC6 /* Pods_Muzinda_DevOps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Muzinda_DevOps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA97C2AE6BD30EDE13489E84 /* Pods-Muzinda DevOps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Muzinda DevOps.release.xcconfig"; path = "Target Support Files/Pods-Muzinda DevOps/Pods-Muzinda DevOps.release.xcconfig"; sourceTree = "<group>"; };
 		C5932A5E4C8CF085211A4140 /* Pods-Muzinda DevOps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Muzinda DevOps.debug.xcconfig"; path = "Target Support Files/Pods-Muzinda DevOps/Pods-Muzinda DevOps.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,16 +98,19 @@
 			isa = PBXGroup;
 			children = (
 				03198780227E27EB00B174EC /* Model */,
+				03A436222284CD8800A18584 /* Views */,
 				0319877C227E274800B174EC /* API */,
-				0319876A227ADB9E00B174EC /* AppDelegate.swift */,
-				0319876C227ADB9E00B174EC /* ViewController.swift */,
-				03198785227EF99B00B174EC /* RequestViewController.swift */,
+				03A436232284CDB600A18584 /* ViewControllers */,
 				0319876E227ADB9E00B174EC /* Main.storyboard */,
 				03198771227ADBAF00B174EC /* Assets.xcassets */,
 				03198773227ADBAF00B174EC /* LaunchScreen.storyboard */,
 				03198787227EFC6100B174EC /* GoogleService-Info.plist */,
 				03198776227ADBAF00B174EC /* Info.plist */,
+				0321776D2284D42A007DB484 /* ProgressHUD.bundle */,
+				0321776C2284D429007DB484 /* ProgressHUD.h */,
+				0321776E2284D42B007DB484 /* ProgressHUD.m */,
 				0394796A2281EFAC005F39D0 /* Utility.swift */,
+				0321776B2284D427007DB484 /* Muzinda DevOps-Bridging-Header.h */,
 			);
 			path = "Muzinda DevOps";
 			sourceTree = "<group>";
@@ -95,7 +120,7 @@
 			children = (
 				0319877D227E276000B174EC /* API.swift */,
 				03198783227E285A00B174EC /* MapApi.swift */,
-				039FC30C227F4D7700472585 /* CustomPin.swift */,
+				03A4362A2284D03500A18584 /* UserApi.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -103,9 +128,34 @@
 		03198780227E27EB00B174EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0319876A227ADB9E00B174EC /* AppDelegate.swift */,
 				03198781227E282100B174EC /* Map.swift */,
+				03A4361F2284CD2300A18584 /* Message.swift */,
+				03A436242284CE7500A18584 /* User.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		03A436222284CD8800A18584 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				039FC30C227F4D7700472585 /* CustomPin.swift */,
+				03A436272284CEFB00A18584 /* ChatMessageCell.swift */,
+				03A436262284CEFB00A18584 /* UserCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		03A436232284CDB600A18584 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0319876C227ADB9E00B174EC /* ViewController.swift */,
+				03A4362C2284D0FE00A18584 /* ChatLogController.swift */,
+				03198785227EF99B00B174EC /* RequestViewController.swift */,
+				03A4361C2284CD0D00A18584 /* NewMessageController.swift */,
+				03A4361B2284CD0C00A18584 /* MessagesController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		5E2334E427E8AA78EEEE971A /* Pods */ = {
@@ -159,6 +209,7 @@
 				TargetAttributes = {
 					03198766227ADB9E00B174EC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -188,6 +239,7 @@
 				03198775227ADBAF00B174EC /* LaunchScreen.storyboard in Resources */,
 				03198788227EFC6100B174EC /* GoogleService-Info.plist in Resources */,
 				03198772227ADBAF00B174EC /* Assets.xcassets in Resources */,
+				0321776F2284D42B007DB484 /* ProgressHUD.bundle in Resources */,
 				03198770227ADB9E00B174EC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +280,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Muzinda DevOps/Pods-Muzinda DevOps-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -237,6 +290,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -253,13 +307,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				0319876D227ADB9E00B174EC /* ViewController.swift in Sources */,
+				03A436282284CEFB00A18584 /* UserCell.swift in Sources */,
 				039FC30D227F4D7700472585 /* CustomPin.swift in Sources */,
 				0319877E227E276000B174EC /* API.swift in Sources */,
 				03198786227EF99B00B174EC /* RequestViewController.swift in Sources */,
+				032177702284D42B007DB484 /* ProgressHUD.m in Sources */,
+				03A436292284CEFB00A18584 /* ChatMessageCell.swift in Sources */,
+				03A4362B2284D03500A18584 /* UserApi.swift in Sources */,
 				0394796B2281EFAC005F39D0 /* Utility.swift in Sources */,
+				03A4362D2284D0FE00A18584 /* ChatLogController.swift in Sources */,
 				03198782227E282100B174EC /* Map.swift in Sources */,
+				03A436202284CD2300A18584 /* Message.swift in Sources */,
+				03A4361E2284CD0D00A18584 /* NewMessageController.swift in Sources */,
+				03A436252284CE7500A18584 /* User.swift in Sources */,
 				0319876B227ADB9E00B174EC /* AppDelegate.swift in Sources */,
 				03198784227E285A00B174EC /* MapApi.swift in Sources */,
+				03A4361D2284CD0D00A18584 /* MessagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +469,7 @@
 			baseConfigurationReference = C5932A5E4C8CF085211A4140 /* Pods-Muzinda DevOps.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Muzinda DevOps/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -414,6 +478,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com..Muzinda-DevOps";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Muzinda DevOps/Muzinda DevOps-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -424,6 +490,7 @@
 			baseConfigurationReference = BA97C2AE6BD30EDE13489E84 /* Pods-Muzinda DevOps.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Muzinda DevOps/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -432,6 +499,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com..Muzinda-DevOps";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Muzinda DevOps/Muzinda DevOps-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -13,11 +13,11 @@ class MapApi {
     
     var REF_MAPREQ = Database.database().reference().child("requests")
     
-    func observeUsers(completion: @escaping (MapModel) -> Void) {
+    func observeMap(completion: @escaping (MapModel) -> Void) {
         REF_MAPREQ.observe(.childAdded, with: { snapshot in
             if let dict = snapshot.value as? [String: Any] {
-                let user = MapModel.stransformMap(dict: dict, key: snapshot.key)
-                completion(user)
+                let pin = MapModel.stransformMap(dict: dict, key: snapshot.key)
+                completion(pin)
             }
         })
     }

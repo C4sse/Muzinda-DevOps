@@ -12,7 +12,7 @@ import MapKit
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITextViewDelegate {
     
     @IBOutlet weak var myRequestsButton: UIBarButtonItem!
-    @IBOutlet weak var addRequestButton: UIBarButtonItem!
+    @IBOutlet weak var addRequestButton: UIButton!
     @IBOutlet weak var messagesButton: UIBarButtonItem!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
@@ -28,6 +28,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var centerPin: UIImageView!
     @IBOutlet weak var jobDescription: UITextView!
+    @IBOutlet weak var messageIcon: UIButton!
+    @IBOutlet weak var helperLabel: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
     var latitude: Double?
     var longitude: Double?
     let placeHolderText = "Job Descpription..."
@@ -43,6 +46,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.delegate = self
         mapView?.delegate = self
         mapView?.showsUserLocation = true
+        mapView.mapType = .hybrid
         checkLocationServices()
         
         let datePicker = UIDatePicker()
@@ -71,9 +75,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.promptView.layer.shadowOffset = CGSize(width: 4, height: 7)
         self.promptView.layer.shadowRadius = 5
         self.promptView.layer.masksToBounds = false
+        
+        messageIcon.layer.cornerRadius = 25
+        messageIcon.clipsToBounds = true
     }
     
     var startDate: Date?
+    
+    @IBAction func goToMessagesController(_ sender: Any) {
+        present(UINavigationController(rootViewController: MessagesController()), animated: true, completion: nil)
+    }
     
     @objc func datePickerValueChange(sender: UIDatePicker) {
         
@@ -140,7 +151,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             self.startDateTextField.text = ""
             self.endDateTextField.text = ""
             self.refreshButton.isEnabled = true
-            self.addRequestButton.isEnabled = true
+            self.addRequestButton.isHidden = false
             self.messagesButton.isEnabled = true
             self.myRequestsButton.isEnabled = true
             self.centerPin.isHidden = true
@@ -154,7 +165,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.promptView.slideOut(from: .left)
         self.bottomView.slideOut(from: .left)
         self.refreshButton.isEnabled = true
-        self.addRequestButton.isEnabled = true
+        self.addRequestButton.isHidden = false
         self.messagesButton.isEnabled = true
         self.myRequestsButton.isEnabled = true
         self.centerPin.isHidden = true
@@ -162,9 +173,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func presentPrompt(_ sender: Any) {
         
+        self.helperLabel.text = "Fill in all info"
+        self.nextButton.isEnabled = false
         self.promptView.slideIn(from: .left)
         self.refreshButton.isEnabled = false
-        self.addRequestButton.isEnabled = false
+        self.addRequestButton.isHidden = true
         self.messagesButton.isEnabled = false
         self.myRequestsButton.isEnabled = false
         self.centerPin.isHidden = true
@@ -172,6 +185,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func addRequest(_ sender: Any) {
         
+        self.addRequestButton.isHidden = true
+        self.helperLabel.text = "Choose location"
         self.bottomView.slideIn(from: .left)
         self.centerPin.isHidden = false
     }
@@ -182,7 +197,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     func getPins() {
         
-        API.Map.observeUsers{ (pin) in
+        API.Map.observeMap{ (pin) in
             //            print("##### \(pin.latitude) \(pin.longitude) \(pin.name)")
             self.pins.append(pin)
         }
@@ -195,7 +210,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         for i in 0...pins.count - 1 {
             let coordinateValue = CLLocationCoordinate2D(latitude: Double(pins[i].latitude!), longitude: Double(pins[i].longitude!))
             
-            let pin = customPin.init(pinTitle: pins[i].title, pinSubtitle: pins[i].price, location: coordinateValue)
+            let pin = customPin.init(pinTitle: pins[i].title, pinSubtitle: pins[i].price!, location: coordinateValue)
             self.mapView.addAnnotation(pin)
             self.mapView.delegate = self
             self.mapView.reloadInputViews()

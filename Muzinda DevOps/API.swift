@@ -10,6 +10,7 @@ import Foundation
 
 struct API {
     static var Map = MapApi()
+    static var User = UserApi()
 }
 
 
