@@ -76,7 +76,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.promptView.layer.shadowRadius = 5
         self.promptView.layer.masksToBounds = false
         
-        messageIcon.layer.cornerRadius = 25
+        messageIcon.layer.cornerRadius = 21
         messageIcon.clipsToBounds = true
     }
     
@@ -300,7 +300,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
+        showMarkers()
         let center = getCenterLocation(for: mapView)
         let geoCoder = CLGeocoder()
         

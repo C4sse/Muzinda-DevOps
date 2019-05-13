@@ -190,11 +190,11 @@
                                 <state key="normal" image="menu"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Krh-1S-RIL">
-                                <rect key="frame" x="89.5" y="577" width="50" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="97.5" y="581" width="42" height="42"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="KUa-8g-dvh"/>
-                                    <constraint firstAttribute="width" constant="50" id="Yea-vs-sUl"/>
+                                    <constraint firstAttribute="height" constant="42" id="KUa-8g-dvh"/>
+                                    <constraint firstAttribute="width" constant="42" id="Yea-vs-sUl"/>
                                 </constraints>
                                 <state key="normal" image="message"/>
                                 <connections>
@@ -226,14 +226,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="qJ7-Df-Rfy">
-                        <leftBarButtonItems>
-                            <barButtonItem systemItem="compose" id="Gwg-1z-HVm"/>
-                            <barButtonItem systemItem="refresh" id="V2M-V7-AQC">
-                                <connections>
-                                    <action selector="refreshTapped:" destination="BYZ-38-t0r" id="5kM-zF-kcC"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="V2M-V7-AQC">
+                            <connections>
+                                <action selector="refreshTapped:" destination="BYZ-38-t0r" id="5kM-zF-kcC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="eZh-Wc-x9h">
                             <connections>
                                 <action selector="logout:" destination="BYZ-38-t0r" id="qcz-qG-g56"/>
@@ -252,7 +249,6 @@
                         <outlet property="jobTitleTextField" destination="iTf-TE-3Gg" id="BDx-gk-tC1"/>
                         <outlet property="mapView" destination="c39-NC-YKx" id="tsd-k9-GgY"/>
                         <outlet property="messageIcon" destination="Krh-1S-RIL" id="7xK-71-lB3"/>
-                        <outlet property="messagesButton" destination="Gwg-1z-HVm" id="8f5-2o-rv4"/>
                         <outlet property="nextButton" destination="jbB-xn-d22" id="5W3-xi-HhM"/>
                         <outlet property="priceTextField" destination="lFn-n7-J3j" id="BbY-qF-i5d"/>
                         <outlet property="promptView" destination="cWy-N3-xc7" id="iaE-g5-iXl"/>

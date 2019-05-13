@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.passwordTextField.delegate = self
         self.emailTextField.isHidden = false
         self.passwordTextField.isHidden = false
-        self.LoginButton.isHidden = true
+        self.LoginButton.isHidden = false
         self.LoginButton.layer.cornerRadius = LoginButton.frame.size.height / 2
         self.LoginButton.clipsToBounds = true
         
