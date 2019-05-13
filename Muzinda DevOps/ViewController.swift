@@ -82,6 +82,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var startDate: Date?
     
+    @IBAction func logout(_ sender: Any) {
+        
+        AuthService.logout(onSuccess: {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController" )
+            self.present(loginVC, animated: true, completion: nil)
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
+        }
+    }
     @IBAction func goToMessagesController(_ sender: Any) {
         present(UINavigationController(rootViewController: MessagesController()), animated: true, completion: nil)
     }
@@ -121,8 +131,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         //        print("workin me \(view.annotation?.coordinate) \(mapView.userLocation.coordinate)")
-        
-        
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {

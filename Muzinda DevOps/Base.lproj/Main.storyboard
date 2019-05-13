@@ -234,6 +234,11 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="eZh-Wc-x9h">
+                            <connections>
+                                <action selector="logout:" destination="BYZ-38-t0r" id="qcz-qG-g56"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addRequestButton" destination="2Io-vQ-n54" id="p9C-9X-3br"/>
@@ -674,7 +679,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hj5-49-qVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="183" y="1"/>
+            <point key="canvasLocation" x="100" y="29"/>
         </scene>
     </scenes>
     <resources>
