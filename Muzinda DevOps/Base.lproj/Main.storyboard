@@ -234,11 +234,6 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="My Requests" id="bjk-g8-hZb">
-                            <connections>
-                                <segue destination="EnC-jl-20s" kind="show" id="pCY-DK-r3V"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addRequestButton" destination="2Io-vQ-n54" id="p9C-9X-3br"/>
@@ -253,7 +248,6 @@
                         <outlet property="mapView" destination="c39-NC-YKx" id="tsd-k9-GgY"/>
                         <outlet property="messageIcon" destination="Krh-1S-RIL" id="7xK-71-lB3"/>
                         <outlet property="messagesButton" destination="Gwg-1z-HVm" id="8f5-2o-rv4"/>
-                        <outlet property="myRequestsButton" destination="bjk-g8-hZb" id="c41-5O-aCe"/>
                         <outlet property="nextButton" destination="jbB-xn-d22" id="5W3-xi-HhM"/>
                         <outlet property="priceTextField" destination="lFn-n7-J3j" id="BbY-qF-i5d"/>
                         <outlet property="promptView" destination="cWy-N3-xc7" id="iaE-g5-iXl"/>
@@ -276,43 +270,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ykb-iC-acm">
-                                <rect key="frame" x="16" y="163" width="343" height="30"/>
+                                <rect key="frame" x="16" y="119" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="usX-c0-5u4">
-                                <rect key="frame" x="16" y="238" width="343" height="30"/>
+                                <rect key="frame" x="16" y="194" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a5a-7J-BXs">
-                                <rect key="frame" x="16" y="313" width="343" height="30"/>
+                                <rect key="frame" x="16" y="269" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrP-Sd-hHZ">
-                                <rect key="frame" x="16" y="134" width="343" height="21"/>
+                                <rect key="frame" x="16" y="90" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fda-ek-ZHz">
-                                <rect key="frame" x="16" y="209" width="343" height="21"/>
+                                <rect key="frame" x="16" y="165" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Npg-SL-Tuz">
-                                <rect key="frame" x="16" y="284" width="343" height="21"/>
+                                <rect key="frame" x="16" y="240" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xka-Ui-MI2">
-                                <rect key="frame" x="163" y="393" width="49" height="30"/>
+                                <rect key="frame" x="163" y="349" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="submitButtonTapped:" destination="EnC-jl-20s" eventType="touchUpInside" id="f5z-7p-sKu"/>
@@ -375,7 +369,7 @@
         <!--Login View Controller-->
         <scene sceneID="vQV-H0-0dN">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="82J-hE-VRW" customClass="LoginViewController" customModule="Spark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="82J-hE-VRW" customClass="LoginViewController" customModule="Muzinda_DevOps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X6q-lD-HeW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -397,8 +391,8 @@
                                     <segue destination="CWR-GL-BrZ" kind="presentation" id="QYd-Xt-WIN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="spark." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e52-nC-ZRD">
-                                <rect key="frame" x="108.5" y="70" width="158" height="85"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DevOps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e52-nC-ZRD">
+                                <rect key="frame" x="85" y="70" width="205.5" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="A4G-0d-gfi"/>
                                 </constraints>
@@ -409,7 +403,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="4Zc-98-Oyh">
                                 <rect key="frame" x="20" y="309" width="335" height="108"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UnO-zg-iGe" customClass="FormTextField" customModule="Spark" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UnO-zg-iGe" customClass="FormTextField" customModule="Muzinda_DevOps" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -430,7 +424,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QXx-vV-BVc" customClass="FormTextField" customModule="Spark" customModuleProvider="target">
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QXx-vV-BVc" customClass="FormTextField" customModule="Muzinda_DevOps" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="52" width="335" height="43"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -532,6 +526,7 @@
                         <outlet property="emailTextField" destination="UnO-zg-iGe" id="mgl-jL-E0z"/>
                         <outlet property="passwordTextField" destination="QXx-vV-BVc" id="cWf-iT-rO0"/>
                         <outlet property="stackViewBottomConstraint" destination="KXn-nk-fKQ" id="EDu-Sk-nzY"/>
+                        <segue destination="Zbh-PR-cV6" kind="presentation" identifier="loginToMap" id="ypF-OB-YfB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qf-Zi-LdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -541,7 +536,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="wag-7l-HD3">
             <objects>
-                <viewController id="CWR-GL-BrZ" customClass="SignUpViewController" customModule="Spark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CWR-GL-BrZ" customClass="SignUpViewController" customModule="Muzinda_DevOps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FBi-Xe-Vkm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -552,7 +547,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="7PM-oQ-SbP">
                                 <rect key="frame" x="20" y="342" width="335" height="165"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y9H-bW-KVf" customClass="FormTextField" customModule="Spark" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y9H-bW-KVf" customClass="FormTextField" customModule="Muzinda_DevOps" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="BCh-OJ-dss"/>
@@ -572,7 +567,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNC-db-WII" customClass="FormTextField" customModule="Spark" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNC-db-WII" customClass="FormTextField" customModule="Muzinda_DevOps" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="61" width="335" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="Igo-b6-1tW"/>
@@ -592,7 +587,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z3l-d7-gJs" customClass="FormTextField" customModule="Spark" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z3l-d7-gJs" customClass="FormTextField" customModule="Muzinda_DevOps" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="122" width="335" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="yZt-Dh-73z"/>
@@ -674,11 +669,12 @@
                         <outlet property="stackViewBottomConstriant" destination="E0c-mE-g4E" id="GT0-PQ-eT5"/>
                         <outlet property="stackViewTosignUPButtonConstraint" destination="JEp-Qi-RDi" id="rU2-Wy-dg0"/>
                         <outlet property="usernameTextField" destination="Y9H-bW-KVf" id="NiH-oB-ExP"/>
+                        <segue destination="Zbh-PR-cV6" kind="presentation" identifier="signupToMap" id="2Rh-Vp-9pf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hj5-49-qVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100" y="0.44977511244377816"/>
+            <point key="canvasLocation" x="183" y="1"/>
         </scene>
     </scenes>
     <resources>
@@ -689,4 +685,7 @@
         <image name="message" width="32" height="32"/>
         <image name="pin" width="33" height="33"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ypF-OB-YfB"/>
+    </inferredMetricsTieBreakers>
 </document>

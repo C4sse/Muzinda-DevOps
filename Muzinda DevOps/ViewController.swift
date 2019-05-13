@@ -46,7 +46,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.delegate = self
         mapView?.delegate = self
         mapView?.showsUserLocation = true
-        mapView.mapType = .hybrid
+        mapView?.mapType = .hybrid
         checkLocationServices()
         
         let datePicker = UIDatePicker()
@@ -123,6 +123,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //        print("workin me \(view.annotation?.coordinate) \(mapView.userLocation.coordinate)")
         
         
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        print("yep")
     }
     
     @IBAction func requestServicesTapped(_ sender: Any) {
@@ -226,7 +230,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         centerViewOnUserLocation()
     }
     func centerViewOnUserLocation() {
-        let location = mapView.userLocation.coordinate
+        guard let location = mapView?.userLocation.coordinate else { return }
         let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
         mapView.setRegion(region, animated: true)
@@ -260,10 +264,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func startTrackingUserLocation() {
         print("ran@")
-        mapView.showsUserLocation = true
+        mapView?.showsUserLocation = true
         centerViewOnUserLocation()
         locationManager.startUpdatingLocation()
-        previousLocation = getCenterLocation(for: mapView)
+//        previousLocation = getCenterLocation(for: mapView)
     }
     
     func getCenterLocation(for mapView: MKMapView) -> CLLocation {

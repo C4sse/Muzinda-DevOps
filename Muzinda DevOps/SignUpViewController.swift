@@ -200,7 +200,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         if let profileImg = self.selectedImage != nil ? self.selectedImage : UIImage(named: "placeholderImg"), let imageData = profileImg.jpegData(compressionQuality: 0.1) {
             AuthService.signUp(username: usernameTextField.text!, email: emailTextField.text!.replacingOccurrences(of: " ", with: "").lowercased(), password: passwordTextField.text!, imageData: imageData, onSuccess: {
                 ProgressHUD.showSuccess("Success")
-                self.performSegue(withIdentifier: "signUpToTabBarVC", sender: nil)
+                self.performSegue(withIdentifier: "signupToMap", sender: nil)
             }, onError: { (errorString) in
                 ProgressHUD.showError(errorString!)
             })

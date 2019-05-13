@@ -94,7 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         
         if API.User.CURRENT_USER != nil {
-            self.performSegue(withIdentifier: "loginToTabBarVC", sender: nil)
+            self.performSegue(withIdentifier: "loginToMap", sender: nil)
         }
     }
     
@@ -174,7 +174,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         ProgressHUD.show("Waiting...", interaction: false)
         AuthService.logIn(email: emailTextField.text!.replacingOccurrences(of: " ", with: "").lowercased(), password: passwordTextField.text!, onSuccess: {
             ProgressHUD.showSuccess("Success")
-            self.performSegue(withIdentifier: "loginToTabBarVC", sender: nil)
+            self.performSegue(withIdentifier: "loginToMap", sender: nil)
             
         }, onError: {error in
             
